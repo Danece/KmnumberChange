@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace kmNumberChange
 {
     public partial class Form1 : Form
     {
-
+        String url = "";
         public Form1()
         {
             InitializeComponent();
@@ -23,44 +24,67 @@ namespace kmNumberChange
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void excute(object sender, EventArgs e)
         {
-            String inputText = input.Text;
-            char[] inputArray = inputText.ToCharArray(0, inputText.Length);
-            Array.Reverse(inputArray);
-
-            int lns = inputArray.Length;
-            /* String log = "";
-             for (int i=0; i<lns; i++)
-             {
-                 log = log + "-" + inputArray[i];
-             }*/
-             LogTest.Text = "LOG : " + lns;
-
-            for (int i = 0; i < lns ; i++)
+            if (checkImageExist())
             {
-                switch (i)
+                String inputText = input.Text;
+                char[] inputArray = inputText.ToCharArray(0, inputText.Length);
+                Array.Reverse(inputArray);
+
+                int lns = inputArray.Length;
+                /* String log = "";
+                 for (int i=0; i<lns; i++)
+                 {
+                     log = log + "-" + inputArray[i];
+                 }*/
+                LogTest.Text = "LOG : " + lns;
+
+                for (int i = 0; i < lns; i++)
                 {
-                    case 0:
-                        unit.BackgroundImage = changeBackground(inputArray[i] - '0');
-                        break;
-                    case 1:
-                        ten.BackgroundImage = changeBackground(inputArray[i] - '0');
-                        break;
-                    case 2:
-                        hundred.BackgroundImage = changeBackground(inputArray[i] - '0');
-                        break;
-                    case 3:
-                        thousand.BackgroundImage = changeBackground(inputArray[i] - '0');
-                        break;
-                    case 4:
-                        million.BackgroundImage = changeBackground(inputArray[i] - '0');
-                        break;
-                    case 5:
-                        ten_million.BackgroundImage = changeBackground(inputArray[i] - '0');
-                        break;
+                    switch (i)
+                    {
+                        case 0:
+                            //unit.BackgroundImage = changeBackground(inputArray[i] - '0');
+                            unit.Image = Image.FromFile(url + "/0.jpg");
+
+                            break;
+                        case 1:
+                            ten.BackgroundImage = changeBackground(inputArray[i] - '0');
+                            break;
+                        case 2:
+                            hundred.BackgroundImage = changeBackground(inputArray[i] - '0');
+                            break;
+                        case 3:
+                            thousand.BackgroundImage = changeBackground(inputArray[i] - '0');
+                            break;
+                        case 4:
+                            million.BackgroundImage = changeBackground(inputArray[i] - '0');
+                            break;
+                        case 5:
+                            ten_million.BackgroundImage = changeBackground(inputArray[i] - '0');
+                            break;
+                    }
                 }
             }
+        }
+
+        public Boolean checkImageExist()
+        {
+            Boolean exist = true;
+            
+
+            for (int i=0; i<10; i++)
+            {
+                String fileName = "/" + i + ".jpg";
+                if (!File.Exists(url + fileName))
+                {
+                    exist = false;
+                    break;
+                }
+            }
+
+            return exist;
         }
 
         public Image changeBackground (int num)
@@ -101,6 +125,25 @@ namespace kmNumberChange
             }
 
             return temp;
+        }
+
+        private void loadFile(object sender, EventArgs e)
+        {
+            url = image_url.Text;
+            url = url.Replace("\\", "/");
+            main_image.Load(url+"/main.jpg");
+            main_image.SizeMode = PictureBoxSizeMode.StretchImage;
+            //main_image.BackgroundImageLayout = ImageLayout.Zoom;
+        }
+
+        private void clear(object sender, EventArgs e)
+        {
+            unit.Load(url + "/empty.jpg");
+            ten.Load(url + "/empty.jpg");
+            hundred.Load(url + "/empty.jpg");
+            thousand.Load(url + "/empty.jpg");
+            million.Load(url + "/empty.jpg");
+            ten_million.Load(url + "/empty.jpg");
         }
     }
 }
