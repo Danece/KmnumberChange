@@ -18,7 +18,6 @@ namespace kmNumberChange
         private int y;
         int standard_width = 11;
         int standard_height = 15;
-        int old_position_x = 0;
 
         public Form1()
         {
@@ -32,7 +31,6 @@ namespace kmNumberChange
             Array.Reverse(inputArray);
 
             int lns = inputArray.Length;
-            LogTest.Text = "LOG : " + lns;
 
             for (int i = 0; i < lns; i++)
             {
@@ -128,30 +126,8 @@ namespace kmNumberChange
         {
             if (checkImageExist())
             {
-                
                 main_image.Load(url + "/main.jpg");
                 main_image.SizeMode = PictureBoxSizeMode.Zoom;
-
-                model_0.Image = Image.FromFile(url + "/0.jpg");
-                model_0.SizeMode = PictureBoxSizeMode.Zoom;
-                model_1.Image = Image.FromFile(url + "/1.jpg");
-                model_1.SizeMode = PictureBoxSizeMode.Zoom;
-                model_2.Image = Image.FromFile(url + "/2.jpg");
-                model_2.SizeMode = PictureBoxSizeMode.Zoom;
-                model_3.Image = Image.FromFile(url + "/3.jpg");
-                model_3.SizeMode = PictureBoxSizeMode.Zoom;
-                model_4.Image = Image.FromFile(url + "/4.jpg");
-                model_4.SizeMode = PictureBoxSizeMode.Zoom;
-                model_5.Image = Image.FromFile(url + "/5.jpg");
-                model_5.SizeMode = PictureBoxSizeMode.Zoom;
-                model_6.Image = Image.FromFile(url + "/6.jpg");
-                model_6.SizeMode = PictureBoxSizeMode.Zoom;
-                model_7.Image = Image.FromFile(url + "/7.jpg");
-                model_7.SizeMode = PictureBoxSizeMode.Zoom;
-                model_8.Image = Image.FromFile(url + "/8.jpg");
-                model_8.SizeMode = PictureBoxSizeMode.Zoom;
-                model_9.Image = Image.FromFile(url + "/9.jpg");
-                model_9.SizeMode = PictureBoxSizeMode.Zoom;
 
                 unit.Image = Image.FromFile(url + "/empty.jpg");
                 ten.Image = Image.FromFile(url + "/empty.jpg");
@@ -160,7 +136,6 @@ namespace kmNumberChange
                 million.Image = Image.FromFile(url + "/empty.jpg");
                 ten_million.Image = Image.FromFile(url + "/empty.jpg");
 
-                emptyImg.Image = Image.FromFile(url + "/empty.jpg");
             }
         }
 
@@ -178,15 +153,34 @@ namespace kmNumberChange
         // ===========================================================================================================
         /* 讓物件可以拖移 */
         // 要移動的物件設定
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+
+        private void number_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 x = e.X;
                 y = e.Y;
-                DoDragDrop(emptyImg, DragDropEffects.Move);
+                DoDragDrop(unit, DragDropEffects.Move);
+
+                int unit_x = unit.Location.X;
+                int unit_y = unit.Location.Y;
+                int unit_width = unit.Width;
+
+                // ten
+                ten.Location = new Point(unit_x - unit_width, unit_y);
+                // hundred
+                hundred.Location = new Point(unit_x - (unit_width * 2), unit_y);
+                // thousand
+                thousand.Location = new Point(unit_x - (unit_width * 3), unit_y);
+                // million
+                million.Location = new Point(unit_x - (unit_width * 4), unit_y);
+                // ten_million
+                ten_million.Location = new Point(unit_x - (unit_width * 5), unit_y);
+
             }
         }
+
+
         // Form設定
         private void Form1_DragEnter(object sender, DragEventArgs e)
         {
@@ -196,17 +190,13 @@ namespace kmNumberChange
         private void Form1_DragDrop(object sender, DragEventArgs e)
         {
             Point p = PointToClient(new Point(e.X, e.Y));
-            emptyImg.SetBounds(p.X - x, p.Y - y, emptyImg.Width, emptyImg.Height);
+            unit.SetBounds(p.X - x, p.Y - y, unit.Width, unit.Height);
         }
         // ===========================================================================================================
         // 圖片縮放
 
         private void changeSize(object sender, EventArgs e)
         {
-            if (0 == old_position_x)
-            {
-                old_position_x = pictureBox1.Location.X;
-            }
 
             int change_width = 0;
             int change_height = 0;
@@ -217,17 +207,30 @@ namespace kmNumberChange
                 change_height = int.Parse(newSize.Text);
             }
 
-            // Unit
-            /*unit.Location = new Point(unit.Location.X + change_width, unit.Location.Y);
+            // 公式 : ten_million的X座標 + (標準寬度+改變寬度) * 等比例
+            unit.Location = new Point(ten_million.Location.X + (standard_width + change_width) * 5, unit.Location.Y);
             unit.Width = standard_width + change_width;
-            unit.Height = standard_height + change_height;*/
+            unit.Height = standard_height + change_height;
 
-            pictureBox1.Location = new Point(old_position_x + change_width, pictureBox1.Location.Y);
-            pictureBox1.Width = standard_width + change_width;
-            pictureBox1.Height = standard_height + change_height;
+            ten.Location = new Point(ten_million.Location.X + (standard_width + change_width)  * 4, ten.Location.Y);
+            ten.Width = standard_width + change_width;
+            ten.Height = standard_height + change_height;
 
-            test123.Width = standard_width + change_width;
-            test123.Height = standard_height + change_height;
+            hundred.Location = new Point(ten_million.Location.X + (standard_width + change_width) * 3, hundred.Location.Y);
+            hundred.Width = standard_width + change_width;
+            hundred.Height = standard_height + change_height;
+
+            thousand.Location = new Point(ten_million.Location.X + (standard_width + change_width) * 2, thousand.Location.Y);
+            thousand.Width = standard_width + change_width;
+            thousand.Height = standard_height + change_height;
+
+            million.Location = new Point(ten_million.Location.X + (standard_width + change_width), ten_million.Location.Y);
+            million.Width = standard_width + change_width;
+            million.Height = standard_height + change_height;
+
+            ten_million.Width = standard_width + change_width;
+            ten_million.Height = standard_height + change_height;
+
         }
     }
 }
