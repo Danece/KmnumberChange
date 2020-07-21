@@ -16,8 +16,8 @@ namespace kmNumberChange
         String url = "";
         private int x;
         private int y;
-        int standard_width = 11;
-        int standard_height = 15;
+        int standard_width = 19;
+        int standard_height = 26;
 
         public Form1()
         {
@@ -38,27 +38,27 @@ namespace kmNumberChange
                 {
                     case 0:
                         unit.Image = Image.FromFile(url + "/"+ inputArray[i] + ".jpg");
-                        unit.SizeMode = PictureBoxSizeMode.Zoom;
+                        unit.SizeMode = PictureBoxSizeMode.StretchImage;
                         break;
                     case 1:
                         ten.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
-                        ten.SizeMode = PictureBoxSizeMode.Zoom;
+                        ten.SizeMode = PictureBoxSizeMode.StretchImage;
                         break;
                     case 2:
                         hundred.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
-                        hundred.SizeMode = PictureBoxSizeMode.Zoom;
+                        hundred.SizeMode = PictureBoxSizeMode.StretchImage;
                         break;
                     case 3:
                         thousand.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
-                        thousand.SizeMode = PictureBoxSizeMode.Zoom;
+                        thousand.SizeMode = PictureBoxSizeMode.StretchImage;
                         break;
                     case 4:
                         million.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
-                        million.SizeMode = PictureBoxSizeMode.Zoom;
+                        million.SizeMode = PictureBoxSizeMode.StretchImage;
                         break;
                     case 5:
                         ten_million.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
-                        ten_million.SizeMode = PictureBoxSizeMode.Zoom;
+                        ten_million.SizeMode = PictureBoxSizeMode.StretchImage;
                         break;
                 }
             }
