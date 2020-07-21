@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.input = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.excuteBtn = new System.Windows.Forms.Button();
             this.LogTest = new System.Windows.Forms.Label();
             this.ten_million = new System.Windows.Forms.PictureBox();
-            this.pictureBox17 = new System.Windows.Forms.PictureBox();
+            this.emptyImg = new System.Windows.Forms.PictureBox();
             this.unit = new System.Windows.Forms.PictureBox();
             this.hundred = new System.Windows.Forms.PictureBox();
             this.ten = new System.Windows.Forms.PictureBox();
@@ -53,10 +52,15 @@
             this.main_image = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.image_url = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.loadBtn = new System.Windows.Forms.Button();
+            this.clearBtn = new System.Windows.Forms.Button();
+            this.test123 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.newSize = new System.Windows.Forms.TextBox();
+            this.changeSizeBtn = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.ten_million)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptyImg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.unit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hundred)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ten)).BeginInit();
@@ -73,6 +77,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.model_1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.model_0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.main_image)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.test123)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // input
@@ -85,28 +91,30 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("新細明體", 16F);
+            this.label1.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.Location = new System.Drawing.Point(8, 376);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 22);
+            this.label1.Size = new System.Drawing.Size(117, 27);
             this.label1.TabIndex = 2;
             this.label1.Text = "輸入里程數";
             // 
-            // button1
+            // excuteBtn
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(240, 375);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "執行";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.excute);
+            this.excuteBtn.Enabled = false;
+            this.excuteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.excuteBtn.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.excuteBtn.Location = new System.Drawing.Point(240, 375);
+            this.excuteBtn.Name = "excuteBtn";
+            this.excuteBtn.Size = new System.Drawing.Size(75, 23);
+            this.excuteBtn.TabIndex = 18;
+            this.excuteBtn.Text = "執行";
+            this.excuteBtn.UseVisualStyleBackColor = true;
+            this.excuteBtn.Click += new System.EventHandler(this.excute);
             // 
             // LogTest
             // 
             this.LogTest.AutoSize = true;
-            this.LogTest.Location = new System.Drawing.Point(700, 455);
+            this.LogTest.Location = new System.Drawing.Point(585, 404);
             this.LogTest.Name = "LogTest";
             this.LogTest.Size = new System.Drawing.Size(37, 12);
             this.LogTest.TabIndex = 20;
@@ -115,29 +123,27 @@
             // ten_million
             // 
             this.ten_million.BackColor = System.Drawing.Color.Transparent;
-            this.ten_million.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ten_million.BackgroundImage")));
             this.ten_million.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ten_million.Location = new System.Drawing.Point(388, 305);
+            this.ten_million.Location = new System.Drawing.Point(361, 421);
             this.ten_million.Name = "ten_million";
             this.ten_million.Size = new System.Drawing.Size(11, 15);
             this.ten_million.TabIndex = 21;
             this.ten_million.TabStop = false;
             // 
-            // pictureBox17
+            // emptyImg
             // 
-            this.pictureBox17.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox17.BackgroundImage")));
-            this.pictureBox17.Location = new System.Drawing.Point(744, 345);
-            this.pictureBox17.Name = "pictureBox17";
-            this.pictureBox17.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox17.TabIndex = 19;
-            this.pictureBox17.TabStop = false;
+            this.emptyImg.Location = new System.Drawing.Point(707, 376);
+            this.emptyImg.Name = "emptyImg";
+            this.emptyImg.Size = new System.Drawing.Size(30, 30);
+            this.emptyImg.TabIndex = 19;
+            this.emptyImg.TabStop = false;
+            this.emptyImg.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             // 
             // unit
             // 
             this.unit.BackColor = System.Drawing.Color.Transparent;
-            this.unit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("unit.BackgroundImage")));
             this.unit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.unit.Location = new System.Drawing.Point(443, 305);
+            this.unit.Location = new System.Drawing.Point(416, 421);
             this.unit.Name = "unit";
             this.unit.Size = new System.Drawing.Size(11, 15);
             this.unit.TabIndex = 17;
@@ -146,9 +152,8 @@
             // hundred
             // 
             this.hundred.BackColor = System.Drawing.Color.Transparent;
-            this.hundred.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hundred.BackgroundImage")));
             this.hundred.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.hundred.Location = new System.Drawing.Point(421, 305);
+            this.hundred.Location = new System.Drawing.Point(394, 421);
             this.hundred.Name = "hundred";
             this.hundred.Size = new System.Drawing.Size(11, 15);
             this.hundred.TabIndex = 16;
@@ -157,9 +162,8 @@
             // ten
             // 
             this.ten.BackColor = System.Drawing.Color.Transparent;
-            this.ten.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ten.BackgroundImage")));
             this.ten.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ten.Location = new System.Drawing.Point(432, 305);
+            this.ten.Location = new System.Drawing.Point(405, 421);
             this.ten.Name = "ten";
             this.ten.Size = new System.Drawing.Size(11, 15);
             this.ten.TabIndex = 15;
@@ -168,9 +172,8 @@
             // million
             // 
             this.million.BackColor = System.Drawing.Color.Transparent;
-            this.million.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("million.BackgroundImage")));
             this.million.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.million.Location = new System.Drawing.Point(399, 305);
+            this.million.Location = new System.Drawing.Point(372, 421);
             this.million.Name = "million";
             this.million.Size = new System.Drawing.Size(11, 15);
             this.million.TabIndex = 14;
@@ -179,9 +182,8 @@
             // thousand
             // 
             this.thousand.BackColor = System.Drawing.Color.Transparent;
-            this.thousand.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("thousand.BackgroundImage")));
             this.thousand.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.thousand.Location = new System.Drawing.Point(410, 305);
+            this.thousand.Location = new System.Drawing.Point(383, 421);
             this.thousand.Name = "thousand";
             this.thousand.Size = new System.Drawing.Size(11, 15);
             this.thousand.TabIndex = 13;
@@ -189,7 +191,7 @@
             // 
             // model_9
             // 
-            this.model_9.Location = new System.Drawing.Point(728, 276);
+            this.model_9.Location = new System.Drawing.Point(677, 276);
             this.model_9.Name = "model_9";
             this.model_9.Size = new System.Drawing.Size(60, 60);
             this.model_9.TabIndex = 12;
@@ -205,7 +207,7 @@
             // 
             // model_7
             // 
-            this.model_7.Location = new System.Drawing.Point(728, 210);
+            this.model_7.Location = new System.Drawing.Point(677, 210);
             this.model_7.Name = "model_7";
             this.model_7.Size = new System.Drawing.Size(60, 60);
             this.model_7.TabIndex = 10;
@@ -213,7 +215,6 @@
             // 
             // model_6
             // 
-            this.model_6.BackgroundImage = global::kmNumberChange.Properties.Resources._6;
             this.model_6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.model_6.Location = new System.Drawing.Point(611, 210);
             this.model_6.Name = "model_6";
@@ -223,7 +224,7 @@
             // 
             // model_5
             // 
-            this.model_5.Location = new System.Drawing.Point(728, 144);
+            this.model_5.Location = new System.Drawing.Point(677, 144);
             this.model_5.Name = "model_5";
             this.model_5.Size = new System.Drawing.Size(60, 60);
             this.model_5.TabIndex = 8;
@@ -239,9 +240,8 @@
             // 
             // model_3
             // 
-            this.model_3.BackgroundImage = global::kmNumberChange.Properties.Resources._3;
             this.model_3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.model_3.Location = new System.Drawing.Point(728, 78);
+            this.model_3.Location = new System.Drawing.Point(677, 78);
             this.model_3.Name = "model_3";
             this.model_3.Size = new System.Drawing.Size(60, 60);
             this.model_3.TabIndex = 6;
@@ -257,9 +257,8 @@
             // 
             // model_1
             // 
-            this.model_1.BackgroundImage = global::kmNumberChange.Properties.Resources._1;
             this.model_1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.model_1.Location = new System.Drawing.Point(728, 12);
+            this.model_1.Location = new System.Drawing.Point(677, 12);
             this.model_1.Name = "model_1";
             this.model_1.Size = new System.Drawing.Size(60, 60);
             this.model_1.TabIndex = 4;
@@ -267,12 +266,10 @@
             // 
             // model_0
             // 
-            this.model_0.BackgroundImage = global::kmNumberChange.Properties.Resources._0;
             this.model_0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.model_0.Location = new System.Drawing.Point(611, 12);
             this.model_0.Name = "model_0";
             this.model_0.Size = new System.Drawing.Size(60, 60);
-            this.model_0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.model_0.TabIndex = 3;
             this.model_0.TabStop = false;
             // 
@@ -288,10 +285,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("新細明體", 16F);
+            this.label2.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label2.Location = new System.Drawing.Point(8, 347);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(208, 22);
+            this.label2.Size = new System.Drawing.Size(201, 27);
             this.label2.TabIndex = 22;
             this.label2.Text = "輸入圖片資料夾路徑";
             // 
@@ -302,46 +299,106 @@
             this.image_url.Size = new System.Drawing.Size(383, 22);
             this.image_url.TabIndex = 23;
             // 
-            // button2
+            // loadBtn
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Location = new System.Drawing.Point(611, 345);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "讀取";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.loadFile);
+            this.loadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.loadBtn.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.loadBtn.Location = new System.Drawing.Point(611, 345);
+            this.loadBtn.Name = "loadBtn";
+            this.loadBtn.Size = new System.Drawing.Size(75, 23);
+            this.loadBtn.TabIndex = 24;
+            this.loadBtn.Text = "讀取";
+            this.loadBtn.UseVisualStyleBackColor = true;
+            this.loadBtn.Click += new System.EventHandler(this.loadFile);
             // 
-            // button3
+            // clearBtn
             // 
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Location = new System.Drawing.Point(321, 375);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 25;
-            this.button3.Text = "清除";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.clear);
+            this.clearBtn.Enabled = false;
+            this.clearBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.clearBtn.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.clearBtn.Location = new System.Drawing.Point(321, 375);
+            this.clearBtn.Name = "clearBtn";
+            this.clearBtn.Size = new System.Drawing.Size(75, 23);
+            this.clearBtn.TabIndex = 25;
+            this.clearBtn.Text = "清除";
+            this.clearBtn.UseVisualStyleBackColor = true;
+            this.clearBtn.Click += new System.EventHandler(this.clear);
+            // 
+            // test123
+            // 
+            this.test123.BackColor = System.Drawing.Color.Transparent;
+            this.test123.BackgroundImage = global::kmNumberChange.Properties.Resources._0;
+            this.test123.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.test123.Location = new System.Drawing.Point(568, 421);
+            this.test123.Name = "test123";
+            this.test123.Size = new System.Drawing.Size(11, 15);
+            this.test123.TabIndex = 22;
+            this.test123.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label3.Location = new System.Drawing.Point(8, 404);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 27);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "圖片縮放";
+            // 
+            // newSize
+            // 
+            this.newSize.Location = new System.Drawing.Point(112, 404);
+            this.newSize.Name = "newSize";
+            this.newSize.Size = new System.Drawing.Size(100, 22);
+            this.newSize.TabIndex = 29;
+            // 
+            // changeSizeBtn
+            // 
+            this.changeSizeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.changeSizeBtn.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.changeSizeBtn.Location = new System.Drawing.Point(218, 403);
+            this.changeSizeBtn.Name = "changeSizeBtn";
+            this.changeSizeBtn.Size = new System.Drawing.Size(75, 23);
+            this.changeSizeBtn.TabIndex = 30;
+            this.changeSizeBtn.Text = "修改";
+            this.changeSizeBtn.UseVisualStyleBackColor = true;
+            this.changeSizeBtn.Click += new System.EventHandler(this.changeSize);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = global::kmNumberChange.Properties.Resources._0;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(579, 421);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(11, 15);
+            this.pictureBox1.TabIndex = 31;
+            this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(851, 476);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(764, 462);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.ten);
+            this.Controls.Add(this.changeSizeBtn);
+            this.Controls.Add(this.thousand);
+            this.Controls.Add(this.newSize);
+            this.Controls.Add(this.million);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.hundred);
+            this.Controls.Add(this.unit);
+            this.Controls.Add(this.test123);
+            this.Controls.Add(this.ten_million);
+            this.Controls.Add(this.clearBtn);
+            this.Controls.Add(this.loadBtn);
             this.Controls.Add(this.image_url);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.ten_million);
             this.Controls.Add(this.LogTest);
-            this.Controls.Add(this.pictureBox17);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.unit);
-            this.Controls.Add(this.hundred);
-            this.Controls.Add(this.ten);
-            this.Controls.Add(this.million);
-            this.Controls.Add(this.thousand);
+            this.Controls.Add(this.emptyImg);
+            this.Controls.Add(this.excuteBtn);
             this.Controls.Add(this.model_9);
             this.Controls.Add(this.model_8);
             this.Controls.Add(this.model_7);
@@ -355,11 +412,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.input);
             this.Controls.Add(this.main_image);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "公里數改圖";
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
             ((System.ComponentModel.ISupportInitialize)(this.ten_million)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptyImg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.unit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hundred)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ten)).EndInit();
@@ -376,6 +435,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.model_1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.model_0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.main_image)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.test123)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -401,14 +462,19 @@
         private System.Windows.Forms.PictureBox hundred;
         private System.Windows.Forms.PictureBox ten;
         private System.Windows.Forms.PictureBox unit;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox17;
+        private System.Windows.Forms.Button excuteBtn;
+        private System.Windows.Forms.PictureBox emptyImg;
         private System.Windows.Forms.Label LogTest;
         private System.Windows.Forms.PictureBox ten_million;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox image_url;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button loadBtn;
+        private System.Windows.Forms.Button clearBtn;
+        private System.Windows.Forms.PictureBox test123;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox newSize;
+        private System.Windows.Forms.Button changeSizeBtn;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
