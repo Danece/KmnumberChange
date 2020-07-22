@@ -27,40 +27,74 @@ namespace kmNumberChange
 
         private void excute(object sender, EventArgs e)
         {
+            Boolean isNumber = true;
             String inputText = input.Text;
             char[] inputArray = inputText.ToCharArray(0, inputText.Length);
-            Array.Reverse(inputArray);
 
-            int lns = inputArray.Length;
-
-            for (int i = 0; i < lns; i++)
+            for (int i = 0; i < inputArray.Length; i++) 
             {
-                switch (i)
+                char number = inputArray[i];
+                String numberString = number.ToString();
+                int temp = 0;
+                if ('-' == number || !int.TryParse(numberString, out temp))
                 {
-                    case 0:
-                        unit.Image = Image.FromFile(url + "/"+ inputArray[i] + ".jpg");
-                        unit.SizeMode = PictureBoxSizeMode.StretchImage;
-                        break;
-                    case 1:
-                        ten.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
-                        ten.SizeMode = PictureBoxSizeMode.StretchImage;
-                        break;
-                    case 2:
-                        hundred.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
-                        hundred.SizeMode = PictureBoxSizeMode.StretchImage;
-                        break;
-                    case 3:
-                        thousand.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
-                        thousand.SizeMode = PictureBoxSizeMode.StretchImage;
-                        break;
-                    case 4:
-                        million.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
-                        million.SizeMode = PictureBoxSizeMode.StretchImage;
-                        break;
-                    case 5:
-                        ten_million.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
-                        ten_million.SizeMode = PictureBoxSizeMode.StretchImage;
-                        break;
+                    isNumber = false;
+                    string message = "請輸入正整數";
+                    string caption = "輸入錯誤";
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    DialogResult result;
+                    result = MessageBox.Show(message, caption, buttons);
+                    break;
+                }
+            }
+
+            if (isNumber)
+            {
+                Array.Reverse(inputArray);
+
+                int lns = inputArray.Length;
+
+                if (6 < lns)
+                {
+                    string message = "最多輸入6位數";
+                    string caption = "輸入錯誤";
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    DialogResult result;
+                    result = MessageBox.Show(message, caption, buttons);
+
+                }
+                else
+                {
+                    for (int i = 0; i < lns; i++)
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                unit.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
+                                unit.SizeMode = PictureBoxSizeMode.StretchImage;
+                                break;
+                            case 1:
+                                ten.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
+                                ten.SizeMode = PictureBoxSizeMode.StretchImage;
+                                break;
+                            case 2:
+                                hundred.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
+                                hundred.SizeMode = PictureBoxSizeMode.StretchImage;
+                                break;
+                            case 3:
+                                thousand.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
+                                thousand.SizeMode = PictureBoxSizeMode.StretchImage;
+                                break;
+                            case 4:
+                                million.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
+                                million.SizeMode = PictureBoxSizeMode.StretchImage;
+                                break;
+                            case 5:
+                                ten_million.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
+                                ten_million.SizeMode = PictureBoxSizeMode.StretchImage;
+                                break;
+                        }
+                    }
                 }
             }
         }
@@ -118,6 +152,7 @@ namespace kmNumberChange
             {
                 excuteBtn.Enabled = true;
                 clearBtn.Enabled = true;
+                changeSizeBtn.Enabled = true;
             }
 
             return exist;
@@ -287,36 +322,46 @@ namespace kmNumberChange
             int change_width = 0;
             int change_height = 0;
 
-            if ("" != newSize.Text)
+            int temp = 0;
+            if (!int.TryParse(newSize.Text, out temp))
             {
-                change_width = int.Parse(newSize.Text);
-                change_height = int.Parse(newSize.Text);
+                string message = "請輸入整數";
+                string caption = "輸入錯誤";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+                result = MessageBox.Show(message, caption, buttons);
+            } else
+            {
+                if ("" != newSize.Text)
+                {
+                    change_width = int.Parse(newSize.Text);
+                    change_height = int.Parse(newSize.Text);
+                }
+
+                // 公式 : ten_million的X座標 + (標準寬度+改變寬度) * 等比例
+                unit.Location = new Point(ten_million.Location.X + (standard_width + change_width) * 5, unit.Location.Y);
+                unit.Width = standard_width + change_width;
+                unit.Height = standard_height + change_height;
+
+                ten.Location = new Point(ten_million.Location.X + (standard_width + change_width) * 4, ten.Location.Y);
+                ten.Width = standard_width + change_width;
+                ten.Height = standard_height + change_height;
+
+                hundred.Location = new Point(ten_million.Location.X + (standard_width + change_width) * 3, hundred.Location.Y);
+                hundred.Width = standard_width + change_width;
+                hundred.Height = standard_height + change_height;
+
+                thousand.Location = new Point(ten_million.Location.X + (standard_width + change_width) * 2, thousand.Location.Y);
+                thousand.Width = standard_width + change_width;
+                thousand.Height = standard_height + change_height;
+
+                million.Location = new Point(ten_million.Location.X + (standard_width + change_width), ten_million.Location.Y);
+                million.Width = standard_width + change_width;
+                million.Height = standard_height + change_height;
+
+                ten_million.Width = standard_width + change_width;
+                ten_million.Height = standard_height + change_height;
             }
-
-            // 公式 : ten_million的X座標 + (標準寬度+改變寬度) * 等比例
-            unit.Location = new Point(ten_million.Location.X + (standard_width + change_width) * 5, unit.Location.Y);
-            unit.Width = standard_width + change_width;
-            unit.Height = standard_height + change_height;
-
-            ten.Location = new Point(ten_million.Location.X + (standard_width + change_width)  * 4, ten.Location.Y);
-            ten.Width = standard_width + change_width;
-            ten.Height = standard_height + change_height;
-
-            hundred.Location = new Point(ten_million.Location.X + (standard_width + change_width) * 3, hundred.Location.Y);
-            hundred.Width = standard_width + change_width;
-            hundred.Height = standard_height + change_height;
-
-            thousand.Location = new Point(ten_million.Location.X + (standard_width + change_width) * 2, thousand.Location.Y);
-            thousand.Width = standard_width + change_width;
-            thousand.Height = standard_height + change_height;
-
-            million.Location = new Point(ten_million.Location.X + (standard_width + change_width), ten_million.Location.Y);
-            million.Width = standard_width + change_width;
-            million.Height = standard_height + change_height;
-
-            ten_million.Width = standard_width + change_width;
-            ten_million.Height = standard_height + change_height;
-
         }
 
         // ===========================================================================================================
