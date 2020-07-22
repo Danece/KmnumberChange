@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace kmNumberChange
@@ -18,10 +12,17 @@ namespace kmNumberChange
         private int y;
         int standard_width = 19;
         int standard_height = 26;
+        // For Form 移動
+        bool beginMove = false;//初始化滑鼠位置
+        int currentXPosition;
+        int currentYPosition;
 
         public Form1()
         {
             InitializeComponent();
+
+            ToolTip toolTip_newSize_label = new ToolTip();
+            toolTip_newSize_label.SetToolTip(newSize_label, "正整數是放大，負數是縮小\n空值或是0則是回復預設大小");
         }
 
         private void excute(object sender, EventArgs e)
@@ -153,7 +154,6 @@ namespace kmNumberChange
         // ===========================================================================================================
         /* 讓物件可以拖移 */
         // 要移動的物件設定
-
         private void number_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -193,8 +193,94 @@ namespace kmNumberChange
             unit.SetBounds(p.X - x, p.Y - y, unit.Width, unit.Height);
         }
         // ===========================================================================================================
-        // 圖片縮放
+        // 按鈕移動位置
+        // UP
+        private void numberMoveUp(object sender, EventArgs e)
+        {
+            int unit_x = unit.Location.X;
+            int unit_y = unit.Location.Y - 1;
+            
+            // unit
+            unit.Location = new Point(unit_x, unit_y);
+            int unit_width = unit.Width;
 
+            // ten
+            ten.Location = new Point(unit_x - unit_width, unit_y);
+            // hundred
+            hundred.Location = new Point(unit_x - (unit_width * 2), unit_y);
+            // thousand
+            thousand.Location = new Point(unit_x - (unit_width * 3), unit_y);
+            // million
+            million.Location = new Point(unit_x - (unit_width * 4), unit_y);
+            // ten_million
+            ten_million.Location = new Point(unit_x - (unit_width * 5), unit_y);
+        }
+        // DOWN
+        private void numberMoveDown(object sender, EventArgs e)
+        {
+            int unit_x = unit.Location.X;
+            int unit_y = unit.Location.Y + 1;
+
+            // unit
+            unit.Location = new Point(unit_x, unit_y);
+            int unit_width = unit.Width;
+
+            // ten
+            ten.Location = new Point(unit_x - unit_width, unit_y);
+            // hundred
+            hundred.Location = new Point(unit_x - (unit_width * 2), unit_y);
+            // thousand
+            thousand.Location = new Point(unit_x - (unit_width * 3), unit_y);
+            // million
+            million.Location = new Point(unit_x - (unit_width * 4), unit_y);
+            // ten_million
+            ten_million.Location = new Point(unit_x - (unit_width * 5), unit_y);
+        }
+        // RIGHT
+        private void numberMoveRight(object sender, EventArgs e)
+        {
+            int unit_x = unit.Location.X + 1;
+            int unit_y = unit.Location.Y;
+
+            // unit
+            unit.Location = new Point(unit_x, unit_y);
+            int unit_width = unit.Width;
+
+            // ten
+            ten.Location = new Point(unit_x - unit_width, unit_y);
+            // hundred
+            hundred.Location = new Point(unit_x - (unit_width * 2), unit_y);
+            // thousand
+            thousand.Location = new Point(unit_x - (unit_width * 3), unit_y);
+            // million
+            million.Location = new Point(unit_x - (unit_width * 4), unit_y);
+            // ten_million
+            ten_million.Location = new Point(unit_x - (unit_width * 5), unit_y);
+        }
+        // LEFT
+        private void numberMoveLeft(object sender, EventArgs e)
+        {
+            int unit_x = unit.Location.X - 1;
+            int unit_y = unit.Location.Y;
+
+            // unit
+            unit.Location = new Point(unit_x, unit_y);
+            int unit_width = unit.Width;
+
+            // ten
+            ten.Location = new Point(unit_x - unit_width, unit_y);
+            // hundred
+            hundred.Location = new Point(unit_x - (unit_width * 2), unit_y);
+            // thousand
+            thousand.Location = new Point(unit_x - (unit_width * 3), unit_y);
+            // million
+            million.Location = new Point(unit_x - (unit_width * 4), unit_y);
+            // ten_million
+            ten_million.Location = new Point(unit_x - (unit_width * 5), unit_y);
+        }
+
+        // ===========================================================================================================
+        // 圖片縮放
         private void changeSize(object sender, EventArgs e)
         {
 
@@ -231,6 +317,70 @@ namespace kmNumberChange
             ten_million.Width = standard_width + change_width;
             ten_million.Height = standard_height + change_height;
 
+        }
+
+        // ===========================================================================================================
+        // 關閉視窗
+        private void closeFormBtn_Click(object sender, EventArgs e)
+        {
+            System.Environment.Exit(0);
+        }
+
+        // 縮小視窗
+        private void hideFormBtn_Click(object sender, EventArgs e)
+        {
+            this.notifyIcon.Text = "公里數改圖";                 //欲顯示的文字
+            this.WindowState = FormWindowState.Minimized;        //決定視窗大小
+            this.ShowInTaskbar = true;                           //決定是否出現在工作列
+            this.notifyIcon.Visible = true;
+        }
+
+        // 開啟縮小視窗
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //在工具列點擊兩下，回復視窗
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+                this.ShowInTaskbar = true;
+                this.notifyIcon.Visible = false;
+            }
+        }
+
+        // ===========================================================================================================
+        //獲取滑鼠按下時的位置
+        private void form_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                beginMove = true;
+                currentXPosition = MousePosition.X;//滑鼠的x座標為當前窗體左上角x座標
+                currentYPosition = MousePosition.Y;//滑鼠的y座標為當前窗體左上角y座標
+            }
+        }
+
+        //獲取滑鼠移動到的位置
+        private void form_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (beginMove)
+            {
+                this.Left += MousePosition.X - currentXPosition;//根據滑鼠x座標確定窗體的左邊座標x
+                this.Top += MousePosition.Y - currentYPosition;//根據滑鼠的y座標窗體的頂部，即Y座標
+                currentXPosition = MousePosition.X;
+                currentYPosition = MousePosition.Y;
+            }
+        }
+
+        //釋放滑鼠時的位置
+        private void form_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                currentXPosition = 0; //設定初始狀態
+                currentYPosition = 0;
+                beginMove = false;
+            }
         }
     }
 }
