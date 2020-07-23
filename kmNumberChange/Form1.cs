@@ -23,6 +23,22 @@ namespace kmNumberChange
 
             ToolTip toolTip_newSize_label = new ToolTip();
             toolTip_newSize_label.SetToolTip(newSize_label, "正整數是放大，負數是縮小\n空值或是0則是回復預設大小");
+
+            /* 
+            // 使圖片重疊且顯示透明背景的做法
+            unit.BackColor = Color.Transparent;
+            unit.Parent = main_image;
+            ten.BackColor = Color.Transparent;
+            ten.Parent = main_image;
+            hundred.BackColor = Color.Transparent;
+            hundred.Parent = main_image;
+            thousand.BackColor = Color.Transparent;
+            thousand.Parent = main_image;
+            million.BackColor = Color.Transparent;
+            million.Parent = main_image;
+            ten_million.BackColor = Color.Transparent;
+            ten_million.Parent = main_image;
+            */
         }
 
         private void excute(object sender, EventArgs e)
@@ -72,26 +88,32 @@ namespace kmNumberChange
                             case 0:
                                 unit.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
                                 unit.SizeMode = PictureBoxSizeMode.StretchImage;
+                                unit.Visible = true;
                                 break;
                             case 1:
                                 ten.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
                                 ten.SizeMode = PictureBoxSizeMode.StretchImage;
+                                ten.Visible = true;
                                 break;
                             case 2:
                                 hundred.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
                                 hundred.SizeMode = PictureBoxSizeMode.StretchImage;
+                                hundred.Visible = true;
                                 break;
                             case 3:
                                 thousand.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
                                 thousand.SizeMode = PictureBoxSizeMode.StretchImage;
+                                thousand.Visible = true;
                                 break;
                             case 4:
                                 million.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
                                 million.SizeMode = PictureBoxSizeMode.StretchImage;
+                                million.Visible = true;
                                 break;
                             case 5:
                                 ten_million.Image = Image.FromFile(url + "/" + inputArray[i] + ".jpg");
                                 ten_million.SizeMode = PictureBoxSizeMode.StretchImage;
+                                ten_million.Visible = true;
                                 break;
                         }
                     }
@@ -119,11 +141,6 @@ namespace kmNumberChange
                 }
                 // Check main
                 if (!File.Exists(url + "/main.jpg"))
-                {
-                    exist = false;
-                }
-                // Check empty
-                if (!File.Exists(url + "/empty.jpg"))
                 {
                     exist = false;
                 }
@@ -165,24 +182,32 @@ namespace kmNumberChange
                 main_image.Load(url + "/main.jpg");
                 main_image.SizeMode = PictureBoxSizeMode.Zoom;
 
-                unit.Image = Image.FromFile(url + "/empty.jpg");
+                /*unit.Image = Image.FromFile(url + "/empty.jpg");
                 ten.Image = Image.FromFile(url + "/empty.jpg");
                 hundred.Image = Image.FromFile(url + "/empty.jpg");
                 thousand.Image = Image.FromFile(url + "/empty.jpg");
                 million.Image = Image.FromFile(url + "/empty.jpg");
-                ten_million.Image = Image.FromFile(url + "/empty.jpg");
+                ten_million.Image = Image.FromFile(url + "/empty.jpg");*/
 
             }
         }
 
         private void clear(object sender, EventArgs e)
         {
-            unit.Load(url + "/empty.jpg");
-            ten.Load(url + "/empty.jpg");
-            hundred.Load(url + "/empty.jpg");
-            thousand.Load(url + "/empty.jpg");
-            million.Load(url + "/empty.jpg");
-            ten_million.Load(url + "/empty.jpg");
+            unit.Image = null;
+            ten.Image = null;
+            hundred.Image = null;
+            thousand.Image = null;
+            million.Image = null;
+            ten_million.Image = null;
+
+            unit.Visible = false;
+            ten.Visible = false;
+            hundred.Visible = false;
+            thousand.Visible = false;
+            million.Visible = false;
+            ten_million.Visible = false;
+
             input.Text = "";
         }
 
@@ -227,6 +252,7 @@ namespace kmNumberChange
             Point p = PointToClient(new Point(e.X, e.Y));
             unit.SetBounds(p.X - x, p.Y - y, unit.Width, unit.Height);
         }
+
         // ===========================================================================================================
         // 按鈕移動位置
         // UP
@@ -426,6 +452,10 @@ namespace kmNumberChange
                 currentYPosition = 0;
                 beginMove = false;
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
         }
     }
 }
