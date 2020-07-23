@@ -310,6 +310,7 @@
             this.hundred.Size = new System.Drawing.Size(19, 26);
             this.hundred.TabIndex = 16;
             this.hundred.TabStop = false;
+            this.hundred.Visible = false;
             // 
             // unit
             // 
@@ -321,6 +322,7 @@
             this.unit.Size = new System.Drawing.Size(19, 26);
             this.unit.TabIndex = 17;
             this.unit.TabStop = false;
+            this.unit.Visible = false;
             this.unit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.number_MouseDown);
             // 
             // ten_million
@@ -333,6 +335,7 @@
             this.ten_million.Size = new System.Drawing.Size(19, 26);
             this.ten_million.TabIndex = 21;
             this.ten_million.TabStop = false;
+            this.ten_million.Visible = false;
             // 
             // thousand
             // 
@@ -344,6 +347,7 @@
             this.thousand.Size = new System.Drawing.Size(19, 26);
             this.thousand.TabIndex = 13;
             this.thousand.TabStop = false;
+            this.thousand.Visible = false;
             // 
             // million
             // 
@@ -355,6 +359,7 @@
             this.million.Size = new System.Drawing.Size(19, 26);
             this.million.TabIndex = 14;
             this.million.TabStop = false;
+            this.million.Visible = false;
             // 
             // ten
             // 
@@ -366,6 +371,7 @@
             this.ten.Size = new System.Drawing.Size(19, 26);
             this.ten.TabIndex = 15;
             this.ten.TabStop = false;
+            this.ten.Visible = false;
             // 
             // Form1
             // 
@@ -406,7 +412,6 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "公里數改圖";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
             ((System.ComponentModel.ISupportInitialize)(this.main_image)).EndInit();
